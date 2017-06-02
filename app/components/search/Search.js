@@ -1,4 +1,5 @@
 const React = require('react');
+const helpers = require('../../utils/helpers');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -17,12 +18,18 @@ module.exports = React.createClass({
 
   handleSubmit: function(event) {
     event.preventDefault();
+    helpers.runQuery(helpers.stringifyUrl(this.state)).then((data) => {
+      //TODO format articles
+      let formattedArticles = [];
+      this.props.setResultArray(formattedArticles);
+      //reset search
+      this.setState({
+        term: "",
+        startYear: 2000,
+        endYear: 2017
+     });
+    });
 
-    this.setState({
-      term: "",
-      startYear: 2000,
-      endYear: 2017
-   });
   },
 
   render: function() {
