@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Promise = require("bluebird");
 
-
 const PORT = process.env.PORT || 8080;
 
 //models and ODM
@@ -19,7 +18,6 @@ db.on("error", function(error) {
 db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
-
 
 //router config
 const router = express.Router();
