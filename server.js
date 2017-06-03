@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8080;
 //models and ODM
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/nytreact");
+mongoose.connect("mongodb://heroku_gg2l1v99:2t2kvco9jignu7emf2i58de4f1@ds161901.mlab.com:61901/heroku_gg2l1v99");
 
 var db = mongoose.connection;
 db.on("error", function(error) {
