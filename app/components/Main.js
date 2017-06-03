@@ -7,8 +7,10 @@ var Search = require('./search/Search');
 
 var Main = React.createClass({
   getInitialState: () => {
-    resultArray: [],
-    savedArray: []
+    return {
+      resultArray: [],
+      savedArray: []
+    }
   },
   setResultArray: (resultArray) => {
     this.setState(Object.assign({}, this.state, {resultArray: resultArray}));
@@ -17,7 +19,11 @@ var Main = React.createClass({
   setSavedArray: (savedArray) => {
     this.setState(Object.assign({}, this.state, {savedArray: savedArray}));
   },
-
+  saveArticle: (article) => {
+    let newArray = savedArray.map();
+    newArray.push(article);
+    this.setState(Object.assign({}, this.state, {savedArray: newArray}));
+  },
   componentDidUpdate: (prevProps, prevState) => {
 
   },

@@ -1,6 +1,6 @@
 const React = require('react');
 
-module.exports = React.createClass({
+var SavedArticle = React.createClass({
 
   render: function() {
     <li>
@@ -8,3 +8,5 @@ module.exports = React.createClass({
     </li>
   }
 });
+
+module.exports = SavedArticle;

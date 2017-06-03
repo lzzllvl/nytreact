@@ -1,8 +1,8 @@
 const React = require('react');
 
-module.exports = React.createClass({
+var ResultArticle = React.createClass({
   //NEEDS A FUNCTION TO SAVE EACH article
-  
+
   render: function() {
     return (
       <li>
@@ -11,3 +11,5 @@ module.exports = React.createClass({
     )
   }
 });
+
+module.exports = ResultArticle;

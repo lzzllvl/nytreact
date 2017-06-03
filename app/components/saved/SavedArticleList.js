@@ -2,12 +2,14 @@ const React = require('react');
 
 const SavedArticle = require('./children/SavedArticle');
 
-module.exports = React.createClass({
+var SavedArticleList = React.createClass({
 
   render: function() {
-    let articles = this.props.resultArray.map(function(value) {
-      return <SaveArticle article={value}/>;
+    let articles = this.props.savedArray.map(function(value) {
+      return <SavedArticle article={value}/>;
     });
     return <section>{articles}</section>;
   }
 });
+
+module.exports = SavedArticleList;

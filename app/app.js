@@ -1,4 +1,5 @@
 //nytreact
+const React = require('react');
 var ReactDOM = require('react-dom');
-
-ReactDOM.render( , document.getElementById('app'));
+var Main = require('./components/Main');
+ReactDOM.render(<Main/> , document.getElementById('app'));

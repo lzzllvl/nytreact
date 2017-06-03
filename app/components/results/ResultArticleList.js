@@ -2,8 +2,8 @@ const React = require('react');
 
 const ResultArticle = require('./children/ResultArticle');
 
-module.exports = React.createClass({
-  
+var ResultArticleList = React.createClass({
+
   render: function() {
     let articles = this.props.resultArray.map(function(value) {
       return <ResultArticle article={value}/>;
@@ -11,3 +11,5 @@ module.exports = React.createClass({
     return <section>{articles}</section>;
   }
 });
+
+module.exports = ResultArticleList;

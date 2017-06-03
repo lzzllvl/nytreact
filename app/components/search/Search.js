@@ -1,14 +1,14 @@
 const React = require('react');
 const helpers = require('../../utils/helpers');
 
-module.exports = React.createClass({
+var Search = React.createClass({
   getInitialState: function() {
     return {
       term: "",
       startYear: 2000,
       endYear: 2017
    };
-  }),
+  },
 
   handleChange: function(event) {
     let newState = this.state;
@@ -91,3 +91,5 @@ module.exports = React.createClass({
     )
   }
 });
+
+module.exports = Search;
