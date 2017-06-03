@@ -21,14 +21,16 @@ db.once("open", function() {
 
 //router config
 const router = express.Router();
-require('./routes/apiRoutes')(router, db);
-require('./routes/spaRoutes')(router, db);
+require('./routes/apiRoutes')(router);
+require('./routes/spaRoutes')(router, __dirname);
 
 //server init and middleware config
 const app = express();
-app.use('/', router);
+
 app.use(logger("dev"));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(express.static("public"));
+app.use('/', router);
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}...`));

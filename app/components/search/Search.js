@@ -19,8 +19,22 @@ var Search = React.createClass({
   handleSubmit: function(event) {
     event.preventDefault();
     helpers.runQuery(helpers.stringifyUrl(this.state)).then((data) => {
-      //TODO format articles
+      console.log(data.data);
+      let articleObjects = data.data.response.docs
       let formattedArticles = [];
+      articleObjects.forEach(function(value) {
+        let counter = 0;
+        let author = value.byline ? value.byline.original :  "Unknown Author";
+        let formatted = {
+          //key: `resArticle${++counter}`,
+          title: value.headline.main,
+          author: author,
+          abstract: value.abstract,
+          url: value.web_url
+        };
+        formattedArticles.push(formatted);
+      });
+      console.log(formattedArticles);
       this.props.setResultArray(formattedArticles);
       //reset search
       this.setState({
@@ -29,7 +43,6 @@ var Search = React.createClass({
         endYear: 2017
      });
     });
-
   },
 
   render: function() {
@@ -80,7 +93,7 @@ var Search = React.createClass({
 
               <br />
               <button
-                className="btn btn-primary"
+                className="btn"
                 type="submit">
                 Submit
               </button>

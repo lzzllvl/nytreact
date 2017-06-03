@@ -13,12 +13,22 @@ const helpers = {
   },
   runQuery: (url) => {
     return axios.get(url).then(function(response) {
-      console.log(response);
+      //console.log(response);
       return response;
     });
   },
 
-  saveArticle: (term) => {
-    return axios.post('/api/' + term);
+  saveArticle: (article) => {
+    return axios.post('/api', article);
+  },
+  removeArticle: (article) => {
+    return axios.delete('/api/' + article._id);
+  }
+  ,
+
+  getSavedArticles: () => {
+    return axios.get('/api');
   }
 }
+
+module.exports = helpers;
