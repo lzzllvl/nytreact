@@ -11,7 +11,7 @@ var Search = React.createClass({
   },
 
   handleChange: function(event) {
-    let newState = this.state;
+    let newState = Object.assign({}, this.state);
     newState[event.target.id] = event.target.value;
     this.setState(newState);
   },

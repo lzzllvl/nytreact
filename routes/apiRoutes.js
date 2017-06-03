@@ -9,12 +9,19 @@ module.exports = function(router) {
 
   router.post('/api', (req, res) => {
     let newArticle = new Article(req.body);
-    newArticle.save((err, doc) => err ? res.send(err): res.json(doc));
+    newArticle.save((err, doc) => {
+      if(err) console.log(err);
+      Article.find({}).exec(function(error, data) {
+        error ? res.send(error): res.json(data)
+      });
+    });
   });
 
   router.delete('/api/:id', (req, res) => {
     Article.remove({_id: req.params.id}, function(err) {
-      err ? res.send(err): null;
+      Article.find({}).exec(function(err, data) {
+        err ? res.send(err): res.send(data);
+      });
     });
   });
 }

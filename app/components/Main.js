@@ -24,32 +24,36 @@ var Main = React.createClass({
   },
 
   saveArticle: function(article) {
-    let newArray = this.state.savedArray.map((val) => val);//clone array
-    newArray.push(article);
-    helpers.saveArticle(article).then((result) => {
-      this.setState(Object.assign({}, this.state, {savedArray:  newArray}));
+    helpers.saveArticle(article).then((response) => {
+      console.log(response);
+        this.setState({
+          savedArray: response.data
+        })//this.setState(Object.assign({}, this.state, {savedArray:  newArray}));
     });
   },
 
   deleteArticle: function(article) {
-    helpers.removeArticle(article).then(() => {
-      this.setState({savedArray: []});
-    });
+    helpers.removeArticle(article).then((response) => {
+      this.setState({
+        savedArray: response.data
+      })
+    });//this.setState({savedArray: newSavedArray});
   },
 
   //maybe move to child components
-  componentDidUpdate: function(prevProps, prevState) {
-
-      helpers.getSavedArticles().then((response) => {
-        let saved = response.data.length
-                  ? response.data
-                  : [];
-        this.setState({
-          savedArray: saved
-        });
-      });
-
-  },
+  // componentDidUpdate: function(prevProps, prevState) {
+  //   console.log(this.state, '\n', prevState);
+  //   console.log(JSON.stringify(this.state.savedArray) !== JSON.stringify(prevState.savedArray));
+  //   if(this.state !== prevState) return;
+  //   helpers.getSavedArticles().then((response) => {
+  //     let saved = response.data.length
+  //               ? response.data
+  //               : [];
+  //     this.setState({
+  //       savedArray: saved
+  //     });
+  //   });
+  // },
 
   componentDidMount: function() {
     helpers.getSavedArticles().then((response) => {
