@@ -2,11 +2,12 @@ const React = require('react');
 
 const SavedArticle = require('./children/SavedArticle');
 
-var SavedArticleList = React.createClass({
+class SavedArticleList extends React.Component {
 
-  render: function() {
-    let articles = this.props.savedArray.map((value) => {
+  render() {
+    let articles = this.props.savedArray.map((value, i) => {
       return <SavedArticle
+                key={value._id}
                 article={value}
                 deleteArticle={this.props.deleteArticle}/>;
     });
@@ -21,6 +22,6 @@ var SavedArticleList = React.createClass({
       </div>
     );
   }
-});
+};
 
 module.exports = SavedArticleList;

@@ -1,12 +1,15 @@
 const React = require('react');
 
-var ResultArticle = React.createClass({
+class ResultArticle extends React.Component {
   //NEEDS A FUNCTION TO SAVE EACH article
-  onClick: function() {
-    this.props.saveArticle(this.props.article);
-  },
+  constructor(props) {
+    super(props);
+    this.onClick = () => {
+      this.props.saveArticle(this.props.article);
+    }
+  }
 
-  render: function() {
+  render() {
     return (
       <li className="articles">
         <h5 className="inline"><a href={this.props.article.url}>{this.props.article.title}</a></h5>
@@ -16,6 +19,6 @@ var ResultArticle = React.createClass({
       </li>
     )
   }
-});
+};
 
 module.exports = ResultArticle;

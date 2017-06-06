@@ -2,11 +2,12 @@ const React = require('react');
 
 const ResultArticle = require('./children/ResultArticle');
 
-var ResultArticleList = React.createClass({
+class ResultArticleList extends React.Component {
 
-  render: function() {
-    let articles = this.props.resultArray.map((value) => {
+  render() {
+    let articles = this.props.resultArray.map((value, i) => {
       return <ResultArticle
+                key={i}
                 article={value}
                 saveArticle={this.props.saveArticle}/>;
     });
@@ -21,6 +22,6 @@ var ResultArticleList = React.createClass({
       </div>
     );
   }
-});
+};
 
 module.exports = ResultArticleList;

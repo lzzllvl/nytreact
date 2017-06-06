@@ -7,38 +7,44 @@ var Search = require('./search/Search');
 var helpers = require('../utils/helpers');
 
 
-var Main = React.createClass({
-  getInitialState: () => {
-    return {
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       resultArray: [],
       savedArray: []
     }
-  },
 
-  setResultArray: function(resultArray) {
+    this.setResultArray = this.setResultArray.bind(this);
+    this.setSavedArray = this.setSavedArray.bind(this);
+    this.saveArticle = this.saveArticle.bind(this);
+    this.deleteArticle = this.deleteArticle.bind(this);
+  }
+
+  setResultArray(resultArray) {
     this.setState(Object.assign({}, this.state, {resultArray: resultArray}));
-  },
+  }
 
-  setSavedArray: function(savedArray) {
+  setSavedArray(savedArray) {
     this.setState(Object.assign({}, this.state, {savedArray: savedArray}));
-  },
+  }
 
-  saveArticle: function(article) {
+  saveArticle(article) {
     helpers.saveArticle(article).then((response) => {
       console.log(response);
         this.setState({
           savedArray: response.data
         })//this.setState(Object.assign({}, this.state, {savedArray:  newArray}));
     });
-  },
+  }
 
-  deleteArticle: function(article) {
+  deleteArticle(article) {
     helpers.removeArticle(article).then((response) => {
       this.setState({
         savedArray: response.data
       })
     });//this.setState({savedArray: newSavedArray});
-  },
+  }
 
   //maybe move to child components
   // componentDidUpdate: function(prevProps, prevState) {
@@ -55,7 +61,7 @@ var Main = React.createClass({
   //   });
   // },
 
-  componentDidMount: function() {
+  componentDidMount() {
     helpers.getSavedArticles().then((response) => {
       let saved = response.data.length
                 ? response.data
@@ -64,9 +70,9 @@ var Main = React.createClass({
         savedArray: saved
       });
     });
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <section className="container">
         <Search setResultArray={this.setResultArray}/>
@@ -79,6 +85,6 @@ var Main = React.createClass({
       </section>
     )
   }
-});
+};
 
 module.exports = Main;

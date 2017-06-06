@@ -1,22 +1,25 @@
 const React = require('react');
 const helpers = require('../../utils/helpers');
 
-var Search = React.createClass({
-  getInitialState: function() {
-    return {
+class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       term: "",
       startYear: 2000,
       endYear: 2017
    };
-  },
+   this.handleChange = this.handleChange.bind(this);
+   this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-  handleChange: function(event) {
+  handleChange(event) {
     let newState = Object.assign({}, this.state);
     newState[event.target.id] = event.target.value;
     this.setState(newState);
-  },
+  }
 
-  handleSubmit: function(event) {
+  handleSubmit(event) {
     event.preventDefault();
     helpers.runQuery(helpers.stringifyUrl(this.state)).then((data) => {
       console.log(data.data);
@@ -34,7 +37,6 @@ var Search = React.createClass({
         };
         formattedArticles.push(formatted);
       });
-      console.log(formattedArticles);
       this.props.setResultArray(formattedArticles);
       //reset search
       this.setState({
@@ -43,9 +45,9 @@ var Search = React.createClass({
         endYear: 2017
      });
     });
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="panel panel-default">
         <div className="panel-heading">
@@ -103,6 +105,6 @@ var Search = React.createClass({
       </div>
     )
   }
-});
+};
 
 module.exports = Search;

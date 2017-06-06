@@ -1,12 +1,14 @@
 const React = require('react');
 
-var SavedArticle = React.createClass({
+class SavedArticle extends React.Component {
 
-  onClick: function() {
-    this.props.deleteArticle(this.props.article);
-  },
-
-  render: function() {
+  constructor(props){
+    super(props);
+    this.onClick = () => {
+      this.props.deleteArticle(this.props.article);
+    }
+  }
+  render() {
     return (
       <li className="articles">
         <h5 className="left inline"><a href={this.props.article.url}>{this.props.article.title}</a></h5>
@@ -16,6 +18,6 @@ var SavedArticle = React.createClass({
       </li>
     )
   }
-});
+};
 
 module.exports = SavedArticle;
